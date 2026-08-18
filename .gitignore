@@ -20,15 +20,15 @@ env/
 .coverage
 htmlcov/
 
-# Bancos de dados locais (API vulnerável usa SQLite)
+# Bancos de dados locais 
 *.db
 *.sqlite3
 
-# Variáveis de ambiente / segredos
+# Variáveis de ambiente 
 .env
 
-# Credenciais de teste — revisar quando credentials_loader.py definir o nome exato do arquivo
+# Credenciais de teste 
 
-# Editor / SO
+# Editor 
 .vscode/
 .DS_Store
