@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+build/
+dist/
+
+# Ambientes virtuais
+.venv/
+venv/
+env/
+
+# Ferramentas de dev
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Bancos de dados locais (API vulnerável usa SQLite)
+*.db
+*.sqlite3
+
+# Variáveis de ambiente / segredos
+.env
+
+# Credenciais de teste — revisar quando credentials_loader.py definir o nome exato do arquivo
+
+# Editor / SO
+.vscode/
+.DS_Store
