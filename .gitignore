@@ -27,7 +27,8 @@ htmlcov/
 # Variáveis de ambiente 
 .env
 
-# Credenciais de teste 
+# Credenciais de teste
+scanner/config/credentials.yaml
 
 # Editor 
 .vscode/

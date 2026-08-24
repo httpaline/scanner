@@ -1,60 +1,64 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
+from pydantic import BaseModel, field_validator
 from enum import Enum
 
-@dataclass
-class Endpoint:
+class Endpoint(BaseModel):
     method: str
     path: str
     path_params: list[str]
     query_params: list[str]
-    request_body_schema: dict
+    request_body_schema: dict | None = None
     response_schema: dict
     requires_auth: bool
    
-@dataclass
+@dataclass(frozen=True)
 class RequestData:
     method: str
     url: str
     headers: dict
     body: dict | None = None  
    
-@dataclass
+@dataclass(frozen=True)
 class ResponseData:
     status_code: int
     headers: dict
     body: dict | str | None = None
     
-@dataclass
+@dataclass(frozen=True)
 class Evidence:
     request: RequestData
     response: ResponseData
     identity_label: str
     
-@dataclass
-class Identity:
+class Identity(BaseModel):
     identity_label: str
     is_admin: bool
     username: str
     password: str
 
-@dataclass
-class TestContext:
+class TestContext(BaseModel):
     identities: list[Identity]
-    
-@dataclass
+    @field_validator("identities")
+    @classmethod
+    def validate_quantity(cls, v):
+        if not (2 <= len(v) <= 3):
+            raise ValueError("Expecting between 2 or 3 identities.")
+        return v
+       
+@dataclass(frozen=True)
 class RawFinding:
     signal: str
     category: str
     endpoint: Endpoint
     evidence: Evidence
-    
+  
 class Severity(str, Enum):
     LOW = 'low'
     MEDIUM = 'medium'
     HIGH = 'high'
     CRITICAL = 'critical'    
     
-@dataclass
+@dataclass(frozen=True)
 class Finding:
     vulnerability: str
     category: str
