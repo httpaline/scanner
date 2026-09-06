@@ -1,0 +1,13 @@
+{
+  "vulnerabilities": [
+    {
+      "id": "VULN-001",
+      "category": "API1",
+      "endpoint": "/users/{id}",
+      "method": "GET",
+      "description": "Usuário autenticado consegue ler dados de outro usuário trocando o id na URL, sem verificação de posse do recurso.",
+      "location": "app/routes/users.py:get_user",
+      "expected_severity": "high"
+    }
+  ]
+}

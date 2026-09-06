@@ -30,6 +30,9 @@ htmlcov/
 # Credenciais de teste
 scanner/config/credentials.yaml
 
+# Specs OpenAPI baixadas de servidor local durante teste manual 
+scanner/config/openapi_live.json
+
 # Editor 
 .vscode/
 .DS_Store
