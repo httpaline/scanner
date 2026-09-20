@@ -28,7 +28,7 @@ def load_openapi_spec(path: str) -> list[Endpoint]:
       
       endpoints.append(
         Endpoint(
-          method=method,
+          method=method.upper(),
           path=endpoint_path,
           path_params=path_params,
           query_params=query_params,
