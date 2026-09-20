@@ -6,7 +6,8 @@ import os
 
 from ..seed_data import USERS
 
-SECRET_KEY = os.environ.get("JWT_SECRET_KEY", "eu_amo_guacamole")
+SECRET_KEY = os.environ.get("JWT_SECRET_KEY", "eu_amo_guacamole_chave_de_teste_local_tcc")
+
 router = APIRouter()
 
 class LoginRequest(BaseModel):
