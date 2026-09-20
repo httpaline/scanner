@@ -1,6 +1,6 @@
 from itertools import combinations
 
-from models import Endpoint, RawFinding, TestContext
+from models import Endpoint, RawFinding, Signal, TestContext
 
 async def run(endpoints: list[Endpoint], credentials: TestContext, http_client) -> list[RawFinding]:
   findings = []
@@ -22,7 +22,7 @@ async def run(endpoints: list[Endpoint], credentials: TestContext, http_client) 
         evidence_b = await http_client.authenticated_request("GET", url, identity_b)
         if evidence_b.response.status_code == 200:
           findings.append(RawFinding(
-            signal="cross_user_read_success",
+            signal= Signal.CROSS_USER_READ_SUCCESS,
             category="API1",
             endpoint=endpoint,
             evidence=evidence_b,

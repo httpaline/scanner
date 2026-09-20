@@ -44,10 +44,13 @@ class TestContext(BaseModel):
         if not (2 <= len(v) <= 3):
             raise ValueError("Expecting between 2 or 3 identities.")
         return v
+    
+class Signal(str,Enum):
+    CROSS_USER_READ_SUCCESS = "cross_user_read_success"     
        
 @dataclass(frozen=True)
 class RawFinding:
-    signal: str
+    signal: Signal
     category: str
     endpoint: Endpoint
     evidence: Evidence
@@ -64,7 +67,7 @@ class Finding:
     category: str
     severity: Severity
     endpoint: Endpoint
-    evidence: Evidence        
+    evidence: Evidence           
     
 if __name__ == "__main__":
     req = RequestData(method="GET", url="/users/5", headers={"Authorization": "Bearer ..."})
@@ -87,7 +90,7 @@ if __name__ == "__main__":
         requires_auth=True,
     )
 
-    raw = RawFinding(signal="cross_user_read_success", category="API1", endpoint=endpoint, evidence=ev)
+    raw = RawFinding(signal=Signal.CROSS_USER_READ_SUCCESS, category="API1", endpoint=endpoint, evidence=ev)
     print(raw)
 
     finding = Finding(
