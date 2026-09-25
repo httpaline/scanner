@@ -67,7 +67,7 @@ class Finding:
     category: str
     severity: Severity
     endpoint: Endpoint
-    evidence: Evidence           
+    evidence: list[Evidence]           
     
 if __name__ == "__main__":
     req = RequestData(method="GET", url="/users/5", headers={"Authorization": "Bearer ..."})
@@ -98,6 +98,6 @@ if __name__ == "__main__":
         category="API1",
         severity=Severity.HIGH,
         endpoint=endpoint,
-        evidence=ev,
+        evidence=[ev],
     )
     print(finding)

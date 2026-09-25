@@ -11,5 +11,5 @@ def classify(raw: RawFinding)-> Finding:
     category=raw.category,
     severity=rule.severity,
     endpoint=raw.endpoint,
-    evidence=raw.evidence,   
+    evidence=[raw.evidence],   
   )
