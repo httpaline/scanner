@@ -33,6 +33,10 @@ scanner/config/credentials.yaml
 # Specs OpenAPI baixadas de servidor local durante teste manual 
 scanner/config/openapi_live.json
 
+# Relatórios gerados pelo scanner (artefato descartável)
+scanner/report*.json
+scanner/output/
+
 # Editor 
 .vscode/
 .DS_Store
