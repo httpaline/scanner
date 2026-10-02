@@ -46,7 +46,8 @@ class TestContext(BaseModel):
         return v
     
 class Signal(str,Enum):
-    CROSS_USER_READ_SUCCESS = "cross_user_read_success"     
+    CROSS_USER_READ_SUCCESS = "cross_user_read_success"
+    CREDENTIALS_IN_QUERY_STRING = "credentials_in_query_string"     
        
 @dataclass(frozen=True)
 class RawFinding:

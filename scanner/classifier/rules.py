@@ -8,5 +8,7 @@ class Rule:
   
 RULES = {
   Signal.CROSS_USER_READ_SUCCESS: Rule("Broken Object Level Authorization", Severity.HIGH),
-}  
+  Signal.CREDENTIALS_IN_QUERY_STRING: Rule("Credentials in Query String", Severity.MEDIUM),
+}
+
   

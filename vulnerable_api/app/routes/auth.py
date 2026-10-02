@@ -17,27 +17,38 @@ class LoginRequest(BaseModel):
 FAILED_ATTEMPTS = {}
 MAX_ATTEMPTS = 5
 
-@router.post("/auth/login")
-def login(credentials: LoginRequest):
-  attempts = FAILED_ATTEMPTS.get(credentials.username, 0)
+
+def _authenticate(username: str, password: str) -> dict:
+  attempts = FAILED_ATTEMPTS.get(username, 0)
   if attempts >= MAX_ATTEMPTS:
     raise HTTPException(status_code=429, detail="Too many login attempts.")
 
   user = None
   for u in USERS.values():
-    if u["username"] == credentials.username:
+    if u["username"] == username:
       user = u
       break
 
-  if user is None or user["password"] != credentials.password:
-    FAILED_ATTEMPTS[credentials.username] = attempts + 1
+  if user is None or user["password"] != password:
+    FAILED_ATTEMPTS[username] = attempts + 1
     raise HTTPException(status_code=401, detail="Invalid credentials.")
 
-  FAILED_ATTEMPTS[credentials.username] = 0
+  FAILED_ATTEMPTS[username] = 0
+  return user
 
+
+def _issue_token(user: dict) -> str:
   payload = {"user_id": user["id"], "exp": datetime.now(timezone.utc) + timedelta(hours=1)}
-  token = jwt.encode(payload, SECRET_KEY, algorithm="HS256")
-  return {"token": token}
+  return jwt.encode(payload, SECRET_KEY, algorithm="HS256")
 
 
-    
+@router.post("/auth/login")
+def login(credentials: LoginRequest):
+  user = _authenticate(credentials.username, credentials.password)
+  return {"token": _issue_token(user)}
+
+
+@router.get("/auth/login")
+def login_query(username: str, password: str):
+  user = _authenticate(username, password)
+  return {"token": _issue_token(user)}
