@@ -45,10 +45,13 @@ class TestContext(BaseModel):
             raise ValueError("Expecting between 2 or 3 identities.")
         return v
     
+    
 class Signal(str,Enum):
     CROSS_USER_READ_SUCCESS = "cross_user_read_success"
-    CREDENTIALS_IN_QUERY_STRING = "credentials_in_query_string"     
-       
+    CREDENTIALS_IN_QUERY_STRING = "credentials_in_query_string"
+    MASS_ASSIGNMENT_PRIVILEGE_ESCALATION = "mass_assignment_privilege_escalation"
+    
+           
 @dataclass(frozen=True)
 class RawFinding:
     signal: Signal

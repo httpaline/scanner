@@ -17,6 +17,15 @@
       "description": "A API aceita autenticação via query string (GET /auth/login?username=...&password=...), expondo credenciais em logs de servidor, proxy e histórico do navegador.",
       "location": "app/routes/auth.py:login_query",
       "expected_severity": "medium"
+    },
+    {
+      "id": "VULN-003",
+      "category": "API3",
+      "endpoint": "/users/{id}",
+      "method": "PUT",
+      "description": "Mass assignment: o endpoint aplica qualquer campo enviado no corpo da requisição ao registro do próprio usuário, permitindo que um usuário comum se torne admin ao enviar is_admin=true.",
+      "location": "app/routes/users.py:update_user",
+      "expected_severity": "high"
     }
   ]
 }

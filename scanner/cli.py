@@ -7,10 +7,10 @@ from classifier.severity import classify
 from config.credentials_loader import load_credentials
 from config.openapi_loader import load_openapi_spec
 from http_client import HttpClient
-from modules import api1_bola, api2_auth
+from modules import api1_bola, api2_auth, api3_bopla
 from report.generator import generate_report
 
-MODULES = [api1_bola, api2_auth]
+MODULES = [api1_bola, api2_auth, api3_bopla]
 
 
 def parse_args() -> argparse.Namespace:
