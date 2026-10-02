@@ -20,5 +20,6 @@ def get_user(id: int, credentials: HTTPAuthorizationCredentials = Depends(securi
   if user is None:
     raise HTTPException(status_code=404, detail="User not found.")
   
-  return user
+  return {"id": user["id"], "username": user["username"], "name": user["name"]}
+
   
