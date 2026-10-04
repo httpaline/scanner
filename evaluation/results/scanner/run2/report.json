@@ -1,0 +1,429 @@
+{
+  "summary": {
+    "total_findings": 5,
+    "by_category": {
+      "API1": 1,
+      "API2": 1,
+      "API3": 1,
+      "API5": 1,
+      "API8": 1
+    },
+    "by_severity": {
+      "high": 3,
+      "medium": 2
+    }
+  },
+  "findings": [
+    {
+      "vulnerability": "Broken Object Level Authorization",
+      "category": "API1",
+      "severity": "high",
+      "endpoint": {
+        "method": "GET",
+        "path": "/users/{id}",
+        "path_params": [
+          "id"
+        ],
+        "query_params": [],
+        "request_body_schema": null,
+        "response_schema": {},
+        "requires_auth": true
+      },
+      "evidence": [
+        {
+          "request": {
+            "method": "GET",
+            "url": "http://127.0.0.1:8000/users/1",
+            "headers": {
+              "host": "127.0.0.1:8000",
+              "accept": "*/*",
+              "accept-encoding": "gzip, deflate",
+              "connection": "keep-alive",
+              "user-agent": "python-httpx/0.28.1",
+              "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE3OTExMjMwNDR9.hQz-ylDcCaJGJ4MFPod5AeHc6kGcFeu8pxuICoACkrs"
+            },
+            "body": null
+          },
+          "response": {
+            "status_code": 200,
+            "headers": {
+              "date": "Sun, 04 Oct 2026 13:10:43 GMT",
+              "server": "uvicorn",
+              "content-length": "50",
+              "content-type": "application/json",
+              "x-content-type-options": "nosniff",
+              "cross-origin-resource-policy": "same-origin"
+            },
+            "body": {
+              "id": 1,
+              "username": "usuario_a",
+              "name": "Usuario A"
+            }
+          },
+          "identity_label": "usuario_b"
+        },
+        {
+          "request": {
+            "method": "GET",
+            "url": "http://127.0.0.1:8000/users/2",
+            "headers": {
+              "host": "127.0.0.1:8000",
+              "accept": "*/*",
+              "accept-encoding": "gzip, deflate",
+              "connection": "keep-alive",
+              "user-agent": "python-httpx/0.28.1",
+              "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE3OTExMjMwNDR9.hQz-ylDcCaJGJ4MFPod5AeHc6kGcFeu8pxuICoACkrs"
+            },
+            "body": null
+          },
+          "response": {
+            "status_code": 200,
+            "headers": {
+              "date": "Sun, 04 Oct 2026 13:10:43 GMT",
+              "server": "uvicorn",
+              "content-length": "50",
+              "content-type": "application/json",
+              "x-content-type-options": "nosniff",
+              "cross-origin-resource-policy": "same-origin"
+            },
+            "body": {
+              "id": 2,
+              "username": "usuario_b",
+              "name": "Usuario B"
+            }
+          },
+          "identity_label": "usuario_b"
+        },
+        {
+          "request": {
+            "method": "GET",
+            "url": "http://127.0.0.1:8000/users/3",
+            "headers": {
+              "host": "127.0.0.1:8000",
+              "accept": "*/*",
+              "accept-encoding": "gzip, deflate",
+              "connection": "keep-alive",
+              "user-agent": "python-httpx/0.28.1",
+              "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE3OTExMjMwNDR9.hQz-ylDcCaJGJ4MFPod5AeHc6kGcFeu8pxuICoACkrs"
+            },
+            "body": null
+          },
+          "response": {
+            "status_code": 200,
+            "headers": {
+              "date": "Sun, 04 Oct 2026 13:10:43 GMT",
+              "server": "uvicorn",
+              "content-length": "42",
+              "content-type": "application/json",
+              "x-content-type-options": "nosniff",
+              "cross-origin-resource-policy": "same-origin"
+            },
+            "body": {
+              "id": 3,
+              "username": "admin",
+              "name": "Admin"
+            }
+          },
+          "identity_label": "usuario_b"
+        }
+      ]
+    },
+    {
+      "vulnerability": "Credentials in Query String",
+      "category": "API2",
+      "severity": "medium",
+      "endpoint": {
+        "method": "GET",
+        "path": "/auth/login",
+        "path_params": [],
+        "query_params": [
+          "username",
+          "password"
+        ],
+        "request_body_schema": null,
+        "response_schema": {},
+        "requires_auth": false
+      },
+      "evidence": [
+        {
+          "request": {
+            "method": "GET",
+            "url": "http://127.0.0.1:8000/auth/login?username=usuario_a&password=senha_teste_a",
+            "headers": {
+              "host": "127.0.0.1:8000",
+              "accept": "*/*",
+              "accept-encoding": "gzip, deflate",
+              "connection": "keep-alive",
+              "user-agent": "python-httpx/0.28.1"
+            },
+            "body": null
+          },
+          "response": {
+            "status_code": 200,
+            "headers": {
+              "date": "Sun, 04 Oct 2026 13:10:43 GMT",
+              "server": "uvicorn",
+              "content-length": "133",
+              "content-type": "application/json",
+              "x-content-type-options": "nosniff",
+              "cross-origin-resource-policy": "same-origin"
+            },
+            "body": {
+              "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3OTExMjMwNDR9.UVo1nhSWNawJ6SqUAvaRk5kisNNc51nARZC1MpyZfF8"
+            }
+          },
+          "identity_label": ""
+        }
+      ]
+    },
+    {
+      "vulnerability": "Mass Assignment / Broken Object Property Level Authorization",
+      "category": "API3",
+      "severity": "high",
+      "endpoint": {
+        "method": "PUT",
+        "path": "/users/{id}",
+        "path_params": [
+          "id"
+        ],
+        "query_params": [],
+        "request_body_schema": {
+          "type": "object",
+          "additionalProperties": true,
+          "title": "Body"
+        },
+        "response_schema": {},
+        "requires_auth": true
+      },
+      "evidence": [
+        {
+          "request": {
+            "method": "PUT",
+            "url": "http://127.0.0.1:8000/users/1",
+            "headers": {
+              "host": "127.0.0.1:8000",
+              "accept": "*/*",
+              "accept-encoding": "gzip, deflate",
+              "connection": "keep-alive",
+              "user-agent": "python-httpx/0.28.1",
+              "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3OTExMjMwNDR9.UVo1nhSWNawJ6SqUAvaRk5kisNNc51nARZC1MpyZfF8",
+              "content-length": "47",
+              "content-type": "application/json"
+            },
+            "body": {
+              "name": "Mass Assignment Test",
+              "is_admin": true
+            }
+          },
+          "response": {
+            "status_code": 200,
+            "headers": {
+              "date": "Sun, 04 Oct 2026 13:10:43 GMT",
+              "server": "uvicorn",
+              "content-length": "77",
+              "content-type": "application/json",
+              "x-content-type-options": "nosniff",
+              "cross-origin-resource-policy": "same-origin"
+            },
+            "body": {
+              "id": 1,
+              "username": "usuario_a",
+              "name": "Mass Assignment Test",
+              "is_admin": true
+            }
+          },
+          "identity_label": "usuario_a"
+        },
+        {
+          "request": {
+            "method": "PUT",
+            "url": "http://127.0.0.1:8000/users/2",
+            "headers": {
+              "host": "127.0.0.1:8000",
+              "accept": "*/*",
+              "accept-encoding": "gzip, deflate",
+              "connection": "keep-alive",
+              "user-agent": "python-httpx/0.28.1",
+              "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE3OTExMjMwNDR9.hQz-ylDcCaJGJ4MFPod5AeHc6kGcFeu8pxuICoACkrs",
+              "content-length": "47",
+              "content-type": "application/json"
+            },
+            "body": {
+              "name": "Mass Assignment Test",
+              "is_admin": true
+            }
+          },
+          "response": {
+            "status_code": 200,
+            "headers": {
+              "date": "Sun, 04 Oct 2026 13:10:43 GMT",
+              "server": "uvicorn",
+              "content-length": "77",
+              "content-type": "application/json",
+              "x-content-type-options": "nosniff",
+              "cross-origin-resource-policy": "same-origin"
+            },
+            "body": {
+              "id": 2,
+              "username": "usuario_b",
+              "name": "Mass Assignment Test",
+              "is_admin": true
+            }
+          },
+          "identity_label": "usuario_b"
+        }
+      ]
+    },
+    {
+      "vulnerability": "Broken Function Level Authorization",
+      "category": "API5",
+      "severity": "high",
+      "endpoint": {
+        "method": "GET",
+        "path": "/admin/users",
+        "path_params": [],
+        "query_params": [],
+        "request_body_schema": null,
+        "response_schema": {},
+        "requires_auth": true
+      },
+      "evidence": [
+        {
+          "request": {
+            "method": "GET",
+            "url": "http://127.0.0.1:8000/admin/users",
+            "headers": {
+              "host": "127.0.0.1:8000",
+              "accept": "*/*",
+              "accept-encoding": "gzip, deflate",
+              "connection": "keep-alive",
+              "user-agent": "python-httpx/0.28.1",
+              "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3OTExMjMwNDR9.UVo1nhSWNawJ6SqUAvaRk5kisNNc51nARZC1MpyZfF8"
+            },
+            "body": null
+          },
+          "response": {
+            "status_code": 200,
+            "headers": {
+              "date": "Sun, 04 Oct 2026 13:10:43 GMT",
+              "server": "uvicorn",
+              "content-length": "216",
+              "content-type": "application/json",
+              "x-content-type-options": "nosniff",
+              "cross-origin-resource-policy": "same-origin"
+            },
+            "body": [
+              {
+                "id": 1,
+                "username": "usuario_a",
+                "name": "Mass Assignment Test",
+                "is_admin": true
+              },
+              {
+                "id": 2,
+                "username": "usuario_b",
+                "name": "Mass Assignment Test",
+                "is_admin": true
+              },
+              {
+                "id": 3,
+                "username": "admin",
+                "name": "Admin",
+                "is_admin": true
+              }
+            ]
+          },
+          "identity_label": "usuario_a"
+        },
+        {
+          "request": {
+            "method": "GET",
+            "url": "http://127.0.0.1:8000/admin/users",
+            "headers": {
+              "host": "127.0.0.1:8000",
+              "accept": "*/*",
+              "accept-encoding": "gzip, deflate",
+              "connection": "keep-alive",
+              "user-agent": "python-httpx/0.28.1",
+              "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE3OTExMjMwNDR9.hQz-ylDcCaJGJ4MFPod5AeHc6kGcFeu8pxuICoACkrs"
+            },
+            "body": null
+          },
+          "response": {
+            "status_code": 200,
+            "headers": {
+              "date": "Sun, 04 Oct 2026 13:10:43 GMT",
+              "server": "uvicorn",
+              "content-length": "216",
+              "content-type": "application/json",
+              "x-content-type-options": "nosniff",
+              "cross-origin-resource-policy": "same-origin"
+            },
+            "body": [
+              {
+                "id": 1,
+                "username": "usuario_a",
+                "name": "Mass Assignment Test",
+                "is_admin": true
+              },
+              {
+                "id": 2,
+                "username": "usuario_b",
+                "name": "Mass Assignment Test",
+                "is_admin": true
+              },
+              {
+                "id": 3,
+                "username": "admin",
+                "name": "Admin",
+                "is_admin": true
+              }
+            ]
+          },
+          "identity_label": "usuario_b"
+        }
+      ]
+    },
+    {
+      "vulnerability": "Security Misconfiguration: Stack Trace Exposure",
+      "category": "API8",
+      "severity": "medium",
+      "endpoint": {
+        "method": "GET",
+        "path": "/debug/crash",
+        "path_params": [],
+        "query_params": [],
+        "request_body_schema": null,
+        "response_schema": {},
+        "requires_auth": false
+      },
+      "evidence": [
+        {
+          "request": {
+            "method": "GET",
+            "url": "http://127.0.0.1:8000/debug/crash",
+            "headers": {
+              "host": "127.0.0.1:8000",
+              "accept": "*/*",
+              "accept-encoding": "gzip, deflate",
+              "connection": "keep-alive",
+              "user-agent": "python-httpx/0.28.1"
+            },
+            "body": null
+          },
+          "response": {
+            "status_code": 500,
+            "headers": {
+              "date": "Sun, 04 Oct 2026 13:10:43 GMT",
+              "server": "uvicorn",
+              "content-length": "5163",
+              "content-type": "text/plain; charset=utf-8"
+            },
+            "body": "Traceback (most recent call last):\n  File \"/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/middleware/errors.py\", line 164, in __call__\n    await self.app(scope, receive, _send)\n  File \"/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/middleware/base.py\", line 193, in __call__\n    response = await self.dispatch_func(request, call_next)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/aline/Documentos/TCC/src/vulnerable_api/app/main.py\", line 22, in add_security_headers\n    response = await call_next(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/middleware/base.py\", line 168, in call_next\n    raise app_exc from app_exc.__cause__ or app_exc.__context__\n  File \"/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/middleware/base.py\", line 144, in coro\n    await self.app(scope, receive_or_disconnect, send_no_error)\n  File \"/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/middleware/exceptions.py\", line 63, in __call__\n    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)\n  File \"/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/_exception_handler.py\", line 53, in wrapped_app\n    raise exc\n  File \"/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/_exception_handler.py\", line 42, in wrapped_app\n    await app(scope, receive, sender)\n  File \"/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/middleware/asyncexitstack.py\", line 18, in __call__\n    await self.app(scope, receive, send)\n  File \"/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/routing.py\", line 670, in __call__\n    await self.middleware_stack(scope, receive, send)\n  File \"/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py\", line 2734, in app\n    await route.handle(scope, receive, send)\n  File \"/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py\", line 1780, in handle\n    await self.original_router.handle(scope, receive, send)\n  File \"/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py\", line 2789, in handle\n    await included_router._handle_selected(scope, receive, send)\n  File \"/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py\", line 1800, in _handle_selected\n    await original_route.handle(scope, receive, send)\n  File \"/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py\", line 1279, in handle\n    await app(scope, receive, send)\n  File \"/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py\", line 158, in app\n    await wrap_app_handling_exceptions(app, request)(scope, receive, send)\n  File \"/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/_exception_handler.py\", line 53, in wrapped_app\n    raise exc\n  File \"/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/_exception_handler.py\", line 42, in wrapped_app\n    await app(scope, receive, sender)\n  File \"/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py\", line 144, in app\n    response = await f(request)\n               ^^^^^^^^^^^^^^^^\n  File \"/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py\", line 706, in app\n    raw_response = await run_endpoint_function(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<3 lines>...\n    )\n    ^\n  File \"/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py\", line 354, in run_endpoint_function\n    return await run_in_threadpool(dependant.call, **values)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/concurrency.py\", line 34, in run_in_threadpool\n    return await anyio.to_thread.run_sync(func)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/anyio/to_thread.py\", line 65, in run_sync\n    return await get_async_backend().run_sync_in_worker_thread(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/anyio/_backends/_asyncio.py\", line 2641, in run_sync_in_worker_thread\n    return await future\n           ^^^^^^^^^^^^\n  File \"/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/anyio/_backends/_asyncio.py\", line 1033, in run\n    result = context.run(func, *args)\n  File \"/home/aline/Documentos/TCC/src/vulnerable_api/app/routes/misc.py\", line 8, in crash\n    raise RuntimeError(\"Falha simulada para teste de tratamento de erro.\")\nRuntimeError: Falha simulada para teste de tratamento de erro.\n"
+          },
+          "identity_label": ""
+        }
+      ]
+    }
+  ]
+}
