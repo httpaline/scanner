@@ -26,6 +26,24 @@
       "description": "Mass assignment: o endpoint aplica qualquer campo enviado no corpo da requisição ao registro do próprio usuário, permitindo que um usuário comum se torne admin ao enviar is_admin=true.",
       "location": "app/routes/users.py:update_user",
       "expected_severity": "high"
+    },
+    {
+      "id": "VULN-004",
+      "category": "API5",
+      "endpoint": "/admin/users",
+      "method": "GET",
+      "description": "Endpoint administrativo (lista todos os usuários) exige apenas um token válido, sem verificar se a identidade autenticada possui o papel de admin (is_admin).",
+      "location": "app/routes/admin.py:list_users",
+      "expected_severity": "high"
+    },
+    {
+      "id": "VULN-005",
+      "category": "API8",
+      "endpoint": "/debug/crash",
+      "method": "GET",
+      "description": "Modo debug ativo em produção: exceções não tratadas devolvem o stack trace completo ao cliente, expondo caminhos internos e estrutura do código.",
+      "location": "app/main.py:expose_traceback",
+      "expected_severity": "medium"
     }
   ]
 }

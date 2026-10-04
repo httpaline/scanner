@@ -50,6 +50,10 @@ class Signal(str,Enum):
     CROSS_USER_READ_SUCCESS = "cross_user_read_success"
     CREDENTIALS_IN_QUERY_STRING = "credentials_in_query_string"
     MASS_ASSIGNMENT_PRIVILEGE_ESCALATION = "mass_assignment_privilege_escalation"
+    BROKEN_FUNCTION_LEVEL_AUTHORIZATION = "broken_function_level_authorization"
+    VERBOSE_ERROR_STACK_TRACE = "verbose_error_stack_trace"
+
+
     
            
 @dataclass(frozen=True)
