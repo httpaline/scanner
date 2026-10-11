@@ -1,0 +1,1827 @@
+{
+	"@programName": "ZAP",
+	"@version": "2.17.0",
+	"@generated": "Sun, 4 Oct 2026 13:31:26",
+	"created": "2026-10-04T13:31:26.823584480Z",
+	"insights":[
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://127.0.0.1:8000",
+			"key": "insight.code.4xx",
+			"description": "Percentage of responses with status code 4xx",
+			"statistic": "99"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://127.0.0.1:8000",
+			"key": "insight.endpoint.ctype.application/json",
+			"description": "Percentage of endpoints with content type application/json",
+			"statistic": "98"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://127.0.0.1:8000",
+			"key": "insight.endpoint.ctype.text/plain",
+			"description": "Percentage of endpoints with content type text/plain",
+			"statistic": "1"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://127.0.0.1:8000",
+			"key": "insight.endpoint.method.GET",
+			"description": "Percentage of endpoints with method GET",
+			"statistic": "15"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://127.0.0.1:8000",
+			"key": "insight.endpoint.method.POST",
+			"description": "Percentage of endpoints with method POST",
+			"statistic": "5"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://127.0.0.1:8000",
+			"key": "insight.endpoint.method.PUT",
+			"description": "Percentage of endpoints with method PUT",
+			"statistic": "78"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://127.0.0.1:8000",
+			"key": "insight.endpoint.total",
+			"description": "Count of total endpoints",
+			"statistic": "152"
+		}
+	],
+	"site":[ 
+		{
+			"@name": "http://127.0.0.1:8000",
+			"@host": "127.0.0.1",
+			"@port": "8000",
+			"@ssl": "false",
+			"alerts": [ 
+				{
+					"pluginid": "100000",
+					"alertRef": "100000-2",
+					"alert": "A Server Error response code was returned by the server",
+					"name": "A Server Error response code was returned by the server",
+					"riskcode": "1",
+					"confidence": "3",
+					"riskdesc": "Low (High)",
+					"desc": "<p>A response code of 500 was returned by the server.</p><p>This may indicate that the application is failing to handle unexpected input correctly.</p><p>Raised by the 'Alert on HTTP Response Code Error' script</p>",
+					"instances":[ 
+						{
+							"id": "4",
+							"uri": "http://127.0.0.1:8000/debug/crash",
+							"nodeName": "http:\/\/127.0.0.1:8000\/debug\/crash",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "500",
+							"otherinfo": ""
+						},
+						{
+							"id": "606",
+							"uri": "http://127.0.0.1:8000/debug/crash/",
+							"nodeName": "http:\/\/127.0.0.1:8000\/debug\/crash\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "500",
+							"otherinfo": ""
+						}
+					],
+					"count": "2",
+					"systemic": false,
+					"solution": "",
+					"otherinfo": "",
+					"reference": "",
+					"cweid": "388",
+					"wascid": "20",
+					"sourceid": "11"
+				},
+				{
+					"pluginid": "90022",
+					"alertRef": "90022",
+					"alert": "Application Error Disclosure",
+					"name": "Application Error Disclosure",
+					"riskcode": "1",
+					"confidence": "2",
+					"riskdesc": "Low (Medium)",
+					"desc": "<p>This page contains an error/warning message that may disclose sensitive information like the location of the file that produced the unhandled exception. This information can be used to launch further attacks against the web application. The alert could be a false positive if the error message is found inside a documentation page.</p>",
+					"instances":[ 
+						{
+							"id": "303",
+							"uri": "http://127.0.0.1:8000/debug/crash",
+							"nodeName": "http:\/\/127.0.0.1:8000\/debug\/crash",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "HTTP/1.1 500 Internal Server Error",
+							"otherinfo": ""
+						}
+					],
+					"count": "1",
+					"systemic": false,
+					"solution": "<p>Review the source code of this page. Implement custom error pages. Consider implementing a mechanism to provide a unique error reference/identifier to the client (browser) while logging the details on the server side and not exposing them to the user.</p>",
+					"otherinfo": "",
+					"reference": "",
+					"cweid": "550",
+					"wascid": "13",
+					"sourceid": "11"
+				},
+				{
+					"pluginid": "100000",
+					"alertRef": "100000-1",
+					"alert": "A Client Error response code was returned by the server",
+					"name": "A Client Error response code was returned by the server",
+					"riskcode": "0",
+					"confidence": "3",
+					"riskdesc": "Informational (High)",
+					"desc": "<p>A response code of 404 was returned by the server.</p><p>This may indicate that the application is failing to handle unexpected input correctly.</p><p>Raised by the 'Alert on HTTP Response Code Error' script</p>",
+					"instances":[ 
+						{
+							"id": "10",
+							"uri": "http://127.0.0.1:8000",
+							"nodeName": "http:\/\/127.0.0.1:8000",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "593",
+							"uri": "http://127.0.0.1:8000/",
+							"nodeName": "http:\/\/127.0.0.1:8000\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "5",
+							"uri": "http://127.0.0.1:8000/6410678020866166476",
+							"nodeName": "http:\/\/127.0.0.1:8000\/6410678020866166476",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "11",
+							"uri": "http://127.0.0.1:8000/admin",
+							"nodeName": "http:\/\/127.0.0.1:8000\/admin",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "597",
+							"uri": "http://127.0.0.1:8000/admin/",
+							"nodeName": "http:\/\/127.0.0.1:8000\/admin\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "6",
+							"uri": "http://127.0.0.1:8000/admin/8597478215755642652",
+							"nodeName": "http:\/\/127.0.0.1:8000\/admin\/8597478215755642652",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "12",
+							"uri": "http://127.0.0.1:8000/auth",
+							"nodeName": "http:\/\/127.0.0.1:8000\/auth",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "600",
+							"uri": "http://127.0.0.1:8000/auth/",
+							"nodeName": "http:\/\/127.0.0.1:8000\/auth\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "7",
+							"uri": "http://127.0.0.1:8000/auth/2288403709229891298",
+							"nodeName": "http:\/\/127.0.0.1:8000\/auth\/2288403709229891298",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "691",
+							"uri": "http://127.0.0.1:8000/auth/actuator/health",
+							"nodeName": "http:\/\/127.0.0.1:8000\/auth\/actuator\/health",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "601",
+							"uri": "http://127.0.0.1:8000/auth/login",
+							"nodeName": "http:\/\/127.0.0.1:8000\/auth\/login",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "0",
+							"uri": "http://127.0.0.1:8000/auth/login?username=username&password=ZAP",
+							"nodeName": "http:\/\/127.0.0.1:8000\/auth\/login (password,username)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "401",
+							"otherinfo": ""
+						},
+						{
+							"id": "53",
+							"uri": "http://127.0.0.1:8000/auth/login?username=username&password=http%3A%2F%2Fwww.google.com%3A80%2Fsearch%3Fq%3DZAP",
+							"nodeName": "http:\/\/127.0.0.1:8000\/auth\/login (password,username)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "602",
+							"uri": "http://127.0.0.1:8000/auth/login/",
+							"nodeName": "http:\/\/127.0.0.1:8000\/auth\/login\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "16",
+							"uri": "http://127.0.0.1:8000/debug",
+							"nodeName": "http:\/\/127.0.0.1:8000\/debug",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "604",
+							"uri": "http://127.0.0.1:8000/debug/",
+							"nodeName": "http:\/\/127.0.0.1:8000\/debug\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "8",
+							"uri": "http://127.0.0.1:8000/debug/4232404269601522314",
+							"nodeName": "http:\/\/127.0.0.1:8000\/debug\/4232404269601522314",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "19",
+							"uri": "http://127.0.0.1:8000/users",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "607",
+							"uri": "http://127.0.0.1:8000/users/",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "2",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "609",
+							"uri": "http://127.0.0.1:8000/users/10/",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "9",
+							"uri": "http://127.0.0.1:8000/users/7927859535156246913",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/7927859535156246913",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "1",
+							"uri": "http://127.0.0.1:8000/auth/login",
+							"nodeName": "http:\/\/127.0.0.1:8000\/auth\/login ()({username,password})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "401",
+							"otherinfo": ""
+						},
+						{
+							"id": "54",
+							"uri": "http://127.0.0.1:8000/auth/login",
+							"nodeName": "http:\/\/127.0.0.1:8000\/auth\/login ()({username,password})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "598",
+							"uri": "http://127.0.0.1:8000/auth/login/",
+							"nodeName": "http:\/\/127.0.0.1:8000\/auth\/login\/ ()({username,password})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "443",
+							"uri": "http://127.0.0.1:8000/computeMetadata/v1/",
+							"nodeName": "http:\/\/127.0.0.1:8000\/computeMetadata\/v1\/ ()({username,password})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "437",
+							"uri": "http://127.0.0.1:8000/latest/meta-data/",
+							"nodeName": "http:\/\/127.0.0.1:8000\/latest\/meta-data\/ ()({username,password})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "468",
+							"uri": "http://127.0.0.1:8000/metadata/instance",
+							"nodeName": "http:\/\/127.0.0.1:8000\/metadata\/instance ()({username,password})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "472",
+							"uri": "http://127.0.0.1:8000/metadata/v1",
+							"nodeName": "http:\/\/127.0.0.1:8000\/metadata\/v1 ()({username,password})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "450",
+							"uri": "http://127.0.0.1:8000/opc/v1/instance/",
+							"nodeName": "http:\/\/127.0.0.1:8000\/opc\/v1\/instance\/ ()({username,password})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "458",
+							"uri": "http://127.0.0.1:8000/opc/v2/instance/",
+							"nodeName": "http:\/\/127.0.0.1:8000\/opc\/v2\/instance\/ ()({username,password})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "474",
+							"uri": "http://127.0.0.1:8000/openstack/latest/meta_data.json",
+							"nodeName": "http:\/\/127.0.0.1:8000\/openstack\/latest\/meta_data.json ()({username,password})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "404",
+							"otherinfo": ""
+						},
+						{
+							"id": "530",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"#set($engine=\\\"\\\")\\n#set($proc=$engine.getClass().forName(\\\"java.lang.Runtime\\\").getRuntime().exec(\\\"sleep 15\\\"))\\n#set($null=$proc.waitFor())\\n${null}\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "558",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"#{%x(sleep 15)}\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "540",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"#{global.process.mainModule.require('child_process').execSync('sleep 15').toString()}\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "266",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"${@print(chr(122).chr(97).chr(112).chr(95).chr(116).chr(111).chr(107).chr(101).chr(110))}\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "270",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"${@print(chr(122).chr(97).chr(112).chr(95).chr(116).chr(111).chr(107).chr(101).chr(110))}\\\\\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "549",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"${__import__(\\\"subprocess\\\").check_output(\\\"sleep 15\\\", shell=True)}\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "143",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"'\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "161",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"'(\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "263",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"';print(chr(122).chr(97).chr(112).chr(95).chr(116).chr(111).chr(107).chr(101).chr(110));$var='\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "280",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"+response.write({0}*{1})+\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "66",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"5723877823652184714.owasp.org\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "76",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"5;URL='https:\/\/5723877823652184714.owasp.org'\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "86",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"5;URL='https:\/\/5723877823652184714.owasp.org\/?John Doe'\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "155",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\";\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "274",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\";print(chr(122).chr(97).chr(112).chr(95).chr(116).chr(111).chr(107).chr(101).chr(110));\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "416",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"<!--\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "122",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"<!--#EXEC cmd=\\\"dir \\\\\\\"-->\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "117",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"<!--#EXEC cmd=\\\"ls \/\\\"-->\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "699",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"<\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "527",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"<#assign ex=\\\"freemarker.template.utility.Execute\\\"?new()> ${ ex(\\\"sleep 15\\\") }\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "537",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"<%= global.process.mainModule.require('child_process').execSync('sleep 15').toString()%>\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "555",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"<%=%x(sleep 15)%>\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "715",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"<xsl:value-of select=\\\"document('http:\/\/127.0.0.1:22')\\\"\/>\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "721",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"<xsl:value-of select=\\\"php:function('exec','erroneous_command 2>\u0026amp;1')\\\"\/>\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "702",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"<xsl:value-of select=\\\"system-property('xsl:vendor')\\\"\/>\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "712",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"<xsl:value-of select=\\\"system-property('xsl:vendor')\\\"\/><!--\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "718",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"<xsl:variable name=\\\"rtobject\\\" select=\\\"runtime:getRuntime()\\\"\/>\\n<xsl:variable name=\\\"process\\\" select=\\\"runtime:exec($rtobject,'erroneous_command')\\\"\/>\\n<xsl:variable name=\\\"waiting\\\" select=\\\"process:waitFor($process)\\\"\/>\\n<xsl:value-of select=\\\"$process\\\"\/>\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "173",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe AND 1=1 -- \")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "176",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe AND 1=2 -- \")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "179",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe OR 1=1 -- \")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "191",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe UNION ALL select NULL -- \")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "3",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "318",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe\u0026cat \/etc\/passwd\u0026\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "340",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe\u0026type %SYSTEMROOT%\\\\win.ini\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "182",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe' AND '1'='1' -- \")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "185",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe' AND '1'='2' -- \")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "188",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe' OR '1'='1' -- \")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "194",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe' UNION ALL select NULL -- \")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "145",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe'\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "331",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe'\u0026cat \/etc\/passwd\u0026'\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "352",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe'\u0026type %SYSTEMROOT%\\\\win.ini\u0026'\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "164",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe'(\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "203",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe') UNION ALL select NULL -- \")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "334",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe';cat \/etc\/passwd;'\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "367",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe';get-help\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "355",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe'|type %SYSTEMROOT%\\\\win.ini\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "200",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe) UNION ALL select NULL -- \")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "158",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe;\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "321",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe;cat \/etc\/passwd;\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "370",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe;get-help #\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "361",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe;get-help\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "197",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe\\\" UNION ALL select NULL -- \")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "153",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe\\\"\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "325",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe\\\"\u0026cat \/etc\/passwd\u0026\\\"\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "346",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe\\\"\u0026type %SYSTEMROOT%\\\\win.ini\u0026\\\"\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "328",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe\\\";cat \/etc\/passwd;\\\"\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "364",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe\\\";get-help\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "349",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe\\\"|type %SYSTEMROOT%\\\\win.ini\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "343",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe|type %SYSTEMROOT%\\\\win.ini\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "641",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"Set-cookie: Tamper=3da005a1-b2d1-4aaf-8db9-fb6e83e05073\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "80",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"URL='http:\/\/5723877823652184714.owasp.org'\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "627",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"ZAP %1!s%2!s%3!s%4!s%5!s%6!s%7!s%8!s%9!s%10!s%11!s%12!s%13!s%14!s%15!s%16!s%17!s%18!s%19!s%20!s%21!n%22!n%23!n%24!n%25!n%26!n%27!n%28!n%29!n%30!n%31!n%32!n%33!n%34!n%35!n%36!n%37!n%38!n%39!n%40!n\\n\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "621",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"ZAP\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "624",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"ZAP%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s\\n\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "149",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"\\\"\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "413",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"\\\"'\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "277",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"\\\"+response.write(65,832*852,412)+\\\"\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "709",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"\\\"\/><xsl:value-of select=\\\"system-property('xsl:vendor')\\\"\/><!--\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "261",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"\\\";print(chr(122).chr(97).chr(112).chr(95).chr(116).chr(111).chr(107).chr(101).chr(110));$var=\\\"\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "126",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"\\\"><!--#EXEC cmd=\\\"dir \\\\\\\"--><\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "119",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"\\\"><!--#EXEC cmd=\\\"ls \/\\\"--><\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "419",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"]]>\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "655",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"any?\\nSet-cookie: Tamper=3da005a1-b2d1-4aaf-8db9-fb6e83e05073\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "649",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"any?\\r\\nSet-cookie: Tamper=3da005a1-b2d1-4aaf-8db9-fb6e83e05073\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "661",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"any?\\r\\nSet-cookie: Tamper=3da005a1-b2d1-4aaf-8db9-fb6e83e05073\\r\\n\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "652",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"any\\nSet-cookie: Tamper=3da005a1-b2d1-4aaf-8db9-fb6e83e05073\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "645",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"any\\r\\nSet-cookie: Tamper=3da005a1-b2d1-4aaf-8db9-fb6e83e05073\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "658",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"any\\r\\nSet-cookie: Tamper=3da005a1-b2d1-4aaf-8db9-fb6e83e05073\\r\\n\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "312",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"cat \/etc\/passwd\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "358",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"get-help\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "92",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"http:\/\/\\\\5723877823652184714.owasp.org\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "21",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"http:\/\/www.google.com\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "13",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"http:\/\/www.google.com\/\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "24",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"http:\/\/www.google.com\/search?q=ZAP\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "17",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"http:\/\/www.google.com:80\/\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "27",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"http:\/\/www.google.com:80\/search?q=ZAP\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "72",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"https:\/\/5723877823652184714%2eowasp%2eorg\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "69",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"https:\/\/5723877823652184714.owasp.org\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "83",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"https:\/\/5723877823652184714.owasp.org\/?John Doe\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "89",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"https:\/\/\\\\5723877823652184714.owasp.org\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "612",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"oLNVaKPLpSvPlJgQhZibFPFXGEDfjjLECemjkApeIWqkIELcXPFcVMduwIqxIVwUNfkvvZhAVrbEDkeSHiGfxTLQlijrvCwassPeXfKgaURDEOBsTsaqHeETulWFWQHydTibaPBkgLIxDIWWTrojgbUSxEogjMGSXKYtIyfyrikQBHmPoyEXMDiWZlIvGlQZSXHrICfaXrATgdINrJJNWIaSjJVkFptCDOgoerxyKMNdsWHUVEPATcJgdKMCNrsySnGJGrGiEtYtVWkbxGYiRTmCouESPuMpDQplXFibgBjAurGSlTUvFsPSUplpPrWIfriCmnfvJHEsLlNycYeuXdQFIYIJUQILHlfdvEldgQGBJoNKFENLpdvnCiGCVodcYpPwlMuUehWEetSDGOJOPSSZNgQYNYgDlfUvrAILJLxcXXiOqJBRIiuNGBDGdNKCHeNtAUdfbUGApGVlBfPUPXfUtKodWDYRYrwHNQmlHjlNwXNatOmCCjQpEqMOjDY)",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "283",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"response.write(65,832*852,412)\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "705",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"system-property('xsl:vendor')\/>\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "337",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"type %SYSTEMROOT%\\\\win.ini\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "36",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"www.google.com\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "30",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"www.google.com\/\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "39",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"www.google.com\/search?q=ZAP\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "33",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"www.google.com:80\/\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "42",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"www.google.com:80\/search?q=ZAP\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "440",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"zj 6924*7528 zj\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "480",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"zj#set($x=6597*9359)${x}zj\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "455",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"zj#{7471*7689}zj\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "449",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"zj${4387*6637}zj\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "477",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"zj<%=5511*2800%>zj\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "483",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"zj<p th:text=\\\"${8555*7037}\\\"><\/p>zj\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "459",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"zj{#3147*7437}zj\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "445",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"zj{4844*1172}zj\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "464",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"zj{@2374*7445}zj\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "486",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"zj{@math key=\\\"8317\\\" method=\\\"multiply\\\" operand=\\\"6368\\\"\/}zj\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "489",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"zj{{13430|add:58030}}zj\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "469",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"zj{{2029*7936}}zj\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "473",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"zj{{=3585*2250}}zj\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "492",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"zj{{print \\\"1361\\\" \\\"4695\\\"}}zj\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "561",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"{system(\\\"sleep 15\\\")}\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "533",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"{{= global.process.mainModule.require('child_process').execSync('sleep 15').toString() }}\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "546",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"{{\\\"\\\".__class__.__mro__[1].__subclasses__()[157].__repr__.__globals__.get(\\\"__builtins__\\\").get(\\\"__import__\\\")(\\\"subprocess\\\").check_output(\\\"sleep 15\\\")}}\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "552",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"{{__import__(\\\"subprocess\\\").check_output(\\\"sleep 15\\\", shell=True)}}\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "543",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"{{range.constructor(\\\"return eval(\\\\\\\"global.process.mainModule.require('child_process').execSync('sleep 15').toString()\\\\\\\")\\\")()}}\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "594",
+							"uri": "http://127.0.0.1:8000/users/10/",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10\/ ()(\"John Doe\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						}
+					],
+					"count": "151",
+					"systemic": false,
+					"solution": "",
+					"otherinfo": "",
+					"reference": "",
+					"cweid": "388",
+					"wascid": "20",
+					"sourceid": "23"
+				},
+				{
+					"pluginid": "10111",
+					"alertRef": "10111",
+					"alert": "Authentication Request Identified",
+					"name": "Authentication Request Identified",
+					"riskcode": "0",
+					"confidence": "3",
+					"riskdesc": "Informational (High)",
+					"desc": "<p>The given request has been identified as an authentication request. The 'Other Info' field contains a set of key=value lines which identify any relevant fields. If the request is in a context which has an Authentication Method set to \"Auto-Detect\" then this rule will change the authentication to match the request identified.</p>",
+					"instances":[ 
+						{
+							"id": "242",
+							"uri": "http://127.0.0.1:8000/auth/login?username=username&password=ZAP",
+							"nodeName": "http:\/\/127.0.0.1:8000\/auth\/login (password,username)",
+							"method": "GET",
+							"param": "username",
+							"attack": "",
+							"evidence": "password",
+							"otherinfo": "userParam=username\nuserValue=username\npasswordParam=password"
+						},
+						{
+							"id": "243",
+							"uri": "http://127.0.0.1:8000/auth/login",
+							"nodeName": "http:\/\/127.0.0.1:8000\/auth\/login ()({username,password})",
+							"method": "POST",
+							"param": "username",
+							"attack": "",
+							"evidence": "password",
+							"otherinfo": "userParam=username\nuserValue=John Doe\npasswordParam=password"
+						}
+					],
+					"count": "2",
+					"systemic": false,
+					"solution": "<p>This is an informational alert rather than a vulnerability and so there is nothing to fix.</p>",
+					"otherinfo": "<p>userParam=username</p><p>userValue=username</p><p>passwordParam=password</p>",
+					"reference": "<p>https://www.zaproxy.org/docs/desktop/addons/authentication-helper/auth-req-id/</p>",
+					"cweid": "-1",
+					"wascid": "-1",
+					"sourceid": "3"
+				},
+				{
+					"pluginid": "10024",
+					"alertRef": "10024",
+					"alert": "Information Disclosure - Sensitive Information in URL",
+					"name": "Information Disclosure - Sensitive Information in URL",
+					"riskcode": "0",
+					"confidence": "2",
+					"riskdesc": "Informational (Medium)",
+					"desc": "<p>The request appeared to contain sensitive information leaked in the URL. This can violate PCI and most organizational compliance policies. You can configure the list of strings for this check to add or remove values specific to your environment.</p>",
+					"instances":[ 
+						{
+							"id": "305",
+							"uri": "http://127.0.0.1:8000/auth/login?username=username&password=ZAP",
+							"nodeName": "http:\/\/127.0.0.1:8000\/auth\/login (password,username)",
+							"method": "GET",
+							"param": "password",
+							"attack": "",
+							"evidence": "password",
+							"otherinfo": "The URL contains potentially sensitive information. The following string was found via the pattern: pass\npassword"
+						},
+						{
+							"id": "307",
+							"uri": "http://127.0.0.1:8000/auth/login?username=username&password=ZAP",
+							"nodeName": "http:\/\/127.0.0.1:8000\/auth\/login (password,username)",
+							"method": "GET",
+							"param": "username",
+							"attack": "",
+							"evidence": "username",
+							"otherinfo": "The URL contains potentially sensitive information. The following string was found via the pattern: user\nusername"
+						}
+					],
+					"count": "2",
+					"systemic": false,
+					"solution": "<p>Do not pass sensitive information in URIs.</p>",
+					"otherinfo": "<p>The URL contains potentially sensitive information. The following string was found via the pattern: pass</p><p>password</p>",
+					"reference": "",
+					"cweid": "598",
+					"wascid": "13",
+					"sourceid": "3"
+				},
+				{
+					"pluginid": "10049",
+					"alertRef": "10049-1",
+					"alert": "Non-Storable Content",
+					"name": "Non-Storable Content",
+					"riskcode": "0",
+					"confidence": "2",
+					"riskdesc": "Informational (Medium)",
+					"desc": "<p>The response contents are not storable by caching components such as proxy servers. If the response does not contain sensitive, personal or user-specific information, it may benefit from being stored and cached, to improve performance.</p>",
+					"instances":[ 
+						{
+							"id": "306",
+							"uri": "http://127.0.0.1:8000/admin/users",
+							"nodeName": "http:\/\/127.0.0.1:8000\/admin\/users",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "authorization:",
+							"otherinfo": ""
+						},
+						{
+							"id": "308",
+							"uri": "http://127.0.0.1:8000/auth/login?username=username&password=ZAP",
+							"nodeName": "http:\/\/127.0.0.1:8000\/auth\/login (password,username)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "authorization:",
+							"otherinfo": ""
+						},
+						{
+							"id": "252",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "authorization:",
+							"otherinfo": ""
+						},
+						{
+							"id": "301",
+							"uri": "http://127.0.0.1:8000/auth/login",
+							"nodeName": "http:\/\/127.0.0.1:8000\/auth\/login ()({username,password})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "authorization:",
+							"otherinfo": ""
+						},
+						{
+							"id": "251",
+							"uri": "http://127.0.0.1:8000/users/10",
+							"nodeName": "http:\/\/127.0.0.1:8000\/users\/10 ()(\"John Doe\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "PUT ",
+							"otherinfo": ""
+						}
+					],
+					"count": "5",
+					"systemic": true,
+					"solution": "<p>The content may be marked as storable by ensuring that the following conditions are satisfied:</p><p>The request method must be understood by the cache and defined as being cacheable (\"GET\", \"HEAD\", and \"POST\" are currently defined as cacheable)</p><p>The response status code must be understood by the cache (one of the 1XX, 2XX, 3XX, 4XX, or 5XX response classes are generally understood)</p><p>The \"no-store\" cache directive must not appear in the request or response header fields</p><p>For caching by \"shared\" caches such as \"proxy\" caches, the \"private\" response directive must not appear in the response</p><p>For caching by \"shared\" caches such as \"proxy\" caches, the \"Authorization\" header field must not appear in the request, unless the response explicitly allows it (using one of the \"must-revalidate\", \"public\", or \"s-maxage\" Cache-Control response directives)</p><p>In addition to the conditions above, at least one of the following conditions must also be satisfied by the response:</p><p>It must contain an \"Expires\" header field</p><p>It must contain a \"max-age\" response directive</p><p>For \"shared\" caches such as \"proxy\" caches, it must contain a \"s-maxage\" response directive</p><p>It must contain a \"Cache Control Extension\" that allows it to be cached</p><p>It must have a status code that is defined as cacheable by default (200, 203, 204, 206, 300, 301, 404, 405, 410, 414, 501).</p>",
+					"otherinfo": "",
+					"reference": "<p>https://datatracker.ietf.org/doc/html/rfc7234</p><p>https://datatracker.ietf.org/doc/html/rfc7231</p><p>https://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html</p>",
+					"cweid": "524",
+					"wascid": "13",
+					"sourceid": "9"
+				}
+			]
+		}
+	],
+	"sequences":[
+	]
+
+}

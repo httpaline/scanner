@@ -1,0 +1,10 @@
+{
+  "run": 1,
+  "tool": "ZAP",
+  "image": "zaproxy/zap-stable",
+  "image_id": "sha256:781a2bdaea47324e7bab583e2263f21d257b0aee61ed51521a5be45f5f5081ef",
+  "identity": "usuario_a",
+  "started_at": "2026-10-04T13:24:49.935772+00:00",
+  "elapsed_seconds": 35.132,
+  "exit_code": 2
+}
